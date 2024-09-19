@@ -1,0 +1,123 @@
+<!--
+// v0 by Vercel.
+// https://v0.dev/t/4Ckf0w3iXLV
+-->
+
+<style>:root{--background:0 0% 100%;--foreground:240 10% 3.9%;--card:0 0% 100%;--card-foreground:240 10% 3.9%;--popover:0 0% 100%;--popover-foreground:240 10% 3.9%;--primary:240 5.9% 10%;--primary-foreground:0 0% 98%;--secondary:240 4.8% 95.9%;--secondary-foreground:240 5.9% 10%;--muted:240 4.8% 95.9%;--muted-foreground:240 3.8% 45%;--accent:240 4.8% 95.9%;--accent-foreground:240 5.9% 10%;--destructive:0 72% 51%;--destructive-foreground:0 0% 98%;--border:240 5.9% 90%;--input:240 5.9% 90%;--ring:240 5.9% 10%;--chart-1:173 58% 39%;--chart-2:12 76% 61%;--chart-3:197 37% 24%;--chart-4:43 74% 66%;--chart-5:27 87% 67%;--radius:0.5rem;}img[src="/placeholder.svg"],img[src="/placeholder-user.jpg"]{filter:sepia(.3) hue-rotate(-60deg) saturate(.5) opacity(0.8) }</style>
+<style>h1, h2, h3, h4, h5, h6 { font-family: 'Inter', sans-serif; --font-sans-serif: 'Inter'; }
+</style>
+<style>body { font-family: 'Inter', sans-serif; --font-sans-serif: 'Inter'; }
+</style>
+<div class="flex items-center justify-center min-h-screen bg-[#87CEEB]">
+  <div class="flex flex-col items-center space-y-8">
+    <div class="bg-white rounded-lg shadow-md p-8 w-full max-w-md">
+      <h2 class="text-2xl font-bold mb-4">Sign Up</h2>
+      <div class="space-y-4">
+        <div>
+          <label for="account-type" class="block text-sm font-medium text-gray-700">
+            Account Type
+          </label>
+          <div class="flex items-center space-x-2">
+            <button
+              type="button"
+              aria-pressed="false"
+              data-state="off"
+              class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground bg-transparent h-10 px-3"
+              aria-label="Toggle account type"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-4 w-4"
+              >
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </button>
+            <span>Employee</span>
+            <button
+              type="button"
+              aria-pressed="false"
+              data-state="off"
+              class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground bg-transparent h-10 px-3"
+              aria-label="Toggle account type"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-4 w-4"
+              >
+                <rect width="16" height="20" x="4" y="2" rx="2" ry="2"></rect>
+                <path d="M9 22v-4h6v4"></path>
+                <path d="M8 6h.01"></path>
+                <path d="M16 6h.01"></path>
+                <path d="M12 6h.01"></path>
+                <path d="M12 10h.01"></path>
+                <path d="M12 14h.01"></path>
+                <path d="M16 10h.01"></path>
+                <path d="M16 14h.01"></path>
+                <path d="M8 10h.01"></path>
+                <path d="M8 14h.01"></path>
+              </svg>
+            </button>
+            <span>Company</span>
+          </div>
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">
+            Email
+          </label>
+          <input
+            id="email"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#87CEEB] focus:ring-[#87CEEB] sm:text-sm"
+            placeholder="example@email.com"
+            type="email"
+          />
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">
+            Password
+          </label>
+          <input
+            id="password"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#87CEEB] focus:ring-[#87CEEB] sm:text-sm"
+            placeholder="Password"
+            type="password"
+          />
+        </div>
+        <div>
+          <label for="confirm-password" class="block text-sm font-medium text-gray-700">
+            Confirm Password
+          </label>
+          <input
+            id="confirm-password"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#87CEEB] focus:ring-[#87CEEB] sm:text-sm"
+            placeholder="Confirm Password"
+            type="password"
+          />
+        </div>
+      </div>
+      <div class="flex items-center justify-between mt-4">
+        <a href="#" class="text-sm text-[#87CEEB] hover:underline" rel="ugc">
+          Already have an account?
+        </a>
+        <button class="bg-[#87CEEB] text-black rounded-md px-4 py-2 hover:bg-[#6ca8c4]">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>
+
