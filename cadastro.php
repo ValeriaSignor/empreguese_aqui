@@ -15,7 +15,6 @@ class cadastro {
         $sql = "SELECT 
             email, 
             senha, 
-            confirmar senha, 
             
         FROM cadastro";
         $result = $this->conn->query($sql);
