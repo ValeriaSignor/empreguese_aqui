@@ -32,10 +32,10 @@ class Pessoa {
 
     function getById($codigo) {
         $sql = "SELECT 
-            codigo, 
-            nome, 
-            documento, 
-            DATE_FORMAT(data_nascimento, '%Y-%m-%d') data_nascimento
+            razão social, 
+            nome fantasma, 
+            cnpj, 
+            
         FROM pessoa
         WHERE codigo = ?";
         $stm = $this->conn->prepare($sql);
@@ -71,18 +71,18 @@ class Pessoa {
 
     function updateById($codigo, $data) {
         $sql = "UPDATE pessoa SET 
-            nome = ?,
-            documento = ?,
-            data_nascimento = ?
+            razão social = ?,
+            nome fantasma = ?,
+            cnpj = ?
         WHERE codigo = ?";
 
         $stm = $this->conn->prepare($sql);
 
         $stm->bind_param(
             'sssi', 
-            $data['nome'], 
-            $data['documento'], 
-            $data['nascimento'], 
+            $data['razão social'], 
+            $data['nome fantasma'], 
+            $data['cnpj'], 
             $codigo
         );
         $stm->execute();
@@ -101,9 +101,9 @@ class Pessoa {
 
         $stm->bind_param(
             'sss', 
-            $data['nome'], 
-            $data['documento'], 
-            $data['nascimento']
+            $data['razão social'], 
+            $data['nome fantasma'], 
+            $data['cnpj']
         );
         $stm->execute();
 

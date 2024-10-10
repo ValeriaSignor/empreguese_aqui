@@ -13,8 +13,10 @@ class login {
 
     function getAll() {
         $sql = "SELECT 
-            email, 
-            senha, 
+            logradouro, 
+            numero, 
+            bairro,
+            cep
              
              FROM login";
         $result = $this->conn->query($sql);
@@ -31,10 +33,11 @@ class login {
 
     function getById($codigo) {
         $sql = "SELECT 
-            codigo, 
-            nome, 
-            documento, 
-            DATE_FORMAT(data_nascimento, '%Y-%m-%d') data_nascimento
+           logradouro, 
+            numero, 
+            bairro,
+            cep,
+            
         FROM login
         WHERE codigo = ?";
         $stm = $this->conn->prepare($sql);
@@ -70,18 +73,20 @@ class login {
 
     function updateById($codigo, $data) {
         $sql = "UPDATE login SET 
-            nome = ?,
-            documento = ?,
-            data_nascimento = ?
+            logradouro = ?,
+            numero = ?,
+            bairro = ?,
+            cep = ?,
         WHERE codigo = ?";
 
         $stm = $this->conn->prepare($sql);
 
         $stm->bind_param(
-            'sssi', 
-            $data['nome'], 
-            $data['documento'], 
-            $data['nascimento'], 
+            'ssssi', 
+            $data['logradouro'], 
+            $data['numero'], 
+            $data['bairro'], 
+            $data['cep'], 
             $codigo
         );
         $stm->execute();
@@ -94,15 +99,16 @@ class login {
     }
 
     function create($data) {
-        $sql = "INSERT INTO login (nome, documento, data_nascimento) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO login (logradouro, numero, bairro, cep) VALUES ( ?, ?)";
 
         $stm = $this->conn->prepare($sql);
 
         $stm->bind_param(
-            'sss', 
-            $data['nome'], 
-            $data['documento'], 
-            $data['nascimento']
+            'ssss', 
+            $data['logradouro'], 
+            $data['numero'] 
+            $data['bairro'], 
+            $data['cep'] 
         );
         $stm->execute();
 

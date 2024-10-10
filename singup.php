@@ -2,7 +2,7 @@
 
 include_once 'db.php';
 
-class Login {
+class cadastro {
 
     private $conn;
 
@@ -13,12 +13,10 @@ class Login {
 
     function getAll() {
         $sql = "SELECT 
-            codigo, 
-            nome, 
-            documento, 
-            DATE_FORMAT(data_cadastro, '%d/%m/%Y %H:%i:%s') data_cadastro,
-            DATE_FORMAT(data_nascimento, '%d/%m/%Y') data_nascimento
-        FROM pessoa";
+            email, 
+            senha, 
+            
+        FROM cadastro";
         $result = $this->conn->query($sql);
 
         $data = [];
@@ -33,11 +31,10 @@ class Login {
 
     function getById($codigo) {
         $sql = "SELECT 
-            codigo, 
-            nome, 
-            documento, 
-            DATE_FORMAT(data_nascimento, '%Y-%m-%d') data_nascimento
-        FROM login
+            email, 
+            senha,
+            
+        FROM cadastro
         WHERE codigo = ?";
         $stm = $this->conn->prepare($sql);
 
@@ -57,7 +54,7 @@ class Login {
     }
 
     function deleteById($codigo) {
-        $sql = "DELETE FROM login WHERE codigo = ?";
+        $sql = "DELETE FROM cadastro WHERE codigo = ?";
         $stm = $this->conn->prepare($sql);
 
         $stm->bind_param('i', $codigo);
@@ -71,19 +68,19 @@ class Login {
     }
 
     function updateById($codigo, $data) {
-        $sql = "UPDATE login SET 
-            nome = ?,
-            documento = ?,
-            data_nascimento = ?
+        $sql = "UPDATE cadastro SET 
+            email = ?,
+            senha = ?,
+           
         WHERE codigo = ?";
 
         $stm = $this->conn->prepare($sql);
 
         $stm->bind_param(
-            'sssi', 
-            $data['nome'], 
-            $data['documento'], 
-            $data['nascimento'], 
+            'ssi', 
+            $data['email'], 
+            $data['senha'], 
+           
             $codigo
         );
         $stm->execute();
@@ -96,15 +93,15 @@ class Login {
     }
 
     function create($data) {
-        $sql = "INSERT INTO login (nome, documento, data_nascimento) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO cadastro (nome, documento, data_nascimento) VALUES (?, ?, ?)";
 
         $stm = $this->conn->prepare($sql);
 
         $stm->bind_param(
-            'sss', 
-            $data['nome'], 
-            $data['documento'], 
-            $data['nascimento']
+            'ss', 
+            $data['email'], 
+            $data['senha'] 
+           
         );
         $stm->execute();
 
@@ -132,31 +129,31 @@ if (!in_array($_SERVER['REQUEST_METHOD'], $allowed_methods)) {
     ] );
 }
 
-$login = new Login ($conn);
+$cadastro = new cadastro($conn);
 
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
-    echo json_encode($login->deleteById($_GET['codigo']));
+    echo json_encode($cadastro->deleteById($_GET['codigo']));
     return;
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     $data = json_decode(file_get_contents("php://input"), true);
-    echo json_encode($login->updateById($_GET['codigo'], $data));
+    echo json_encode($cadastro->updateById($_GET['codigo'], $data));
     return;
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = json_decode(file_get_contents("php://input"), true);
-    echo json_encode($pessoa->create($data));
+    echo json_encode($cadastro->create($data));
     return;
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], 'login/cadastro')) {
-        echo json_encode($pessoa->getById($_GET['codigo']));
+    if (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], 'cadastro/cadastro')) {
+        echo json_encode($cadastro->getById($_GET['codigo']));
         return;
     }
 
-    echo json_encode($login->getAll());
+    echo json_encode($cadastro->getAll());
     return;
 }

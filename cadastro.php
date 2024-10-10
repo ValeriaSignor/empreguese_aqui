@@ -31,10 +31,9 @@ class cadastro {
 
     function getById($codigo) {
         $sql = "SELECT 
-            codigo, 
-            nome, 
-            documento, 
-            DATE_FORMAT(data_nascimento, '%Y-%m-%d') data_nascimento
+            email, 
+            senha,
+            
         FROM cadastro
         WHERE codigo = ?";
         $stm = $this->conn->prepare($sql);
@@ -70,18 +69,18 @@ class cadastro {
 
     function updateById($codigo, $data) {
         $sql = "UPDATE cadastro SET 
-            nome = ?,
-            documento = ?,
-            data_nascimento = ?
+            email = ?,
+            senha = ?,
+           
         WHERE codigo = ?";
 
         $stm = $this->conn->prepare($sql);
 
         $stm->bind_param(
-            'sssi', 
-            $data['nome'], 
-            $data['documento'], 
-            $data['nascimento'], 
+            'ssi', 
+            $data['email'], 
+            $data['senha'], 
+           
             $codigo
         );
         $stm->execute();
@@ -99,10 +98,10 @@ class cadastro {
         $stm = $this->conn->prepare($sql);
 
         $stm->bind_param(
-            'sss', 
-            $data['nome'], 
-            $data['documento'], 
-            $data['nascimento']
+            'ss', 
+            $data['email'], 
+            $data['senha'] 
+           
         );
         $stm->execute();
 

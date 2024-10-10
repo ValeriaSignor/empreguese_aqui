@@ -35,10 +35,13 @@ class Pessoa {
 
     function getById($codigo) {
         $sql = "SELECT 
-            codigo, 
-            nome, 
-            documento, 
-            DATE_FORMAT(data_nascimento, '%Y-%m-%d') data_nascimento
+            nome,
+            sobrenome, 
+            data_de_nascimento,
+            cpf,
+            telefone, 
+            
+            DATE_FORMAT(data_de_nascimento, '%Y-%m-%d') data_de_nascimento
         FROM pessoa
         WHERE codigo = ?";
         $stm = $this->conn->prepare($sql);
@@ -75,17 +78,22 @@ class Pessoa {
     function updateById($codigo, $data) {
         $sql = "UPDATE pessoa SET 
             nome = ?,
-            documento = ?,
-            data_nascimento = ?
+            sobrenome = ?,
+            data_de_nascimento = ?,
+            cpf = ?,
+            telefone = ?,
         WHERE codigo = ?";
 
         $stm = $this->conn->prepare($sql);
 
         $stm->bind_param(
-            'sssi', 
+            'sssssi', 
             $data['nome'], 
-            $data['documento'], 
-            $data['nascimento'], 
+            $data['sobrenome'], 
+            $data['data_de_nascimento'],
+            $data['cpf '], 
+            $data['telefone'], 
+             
             $codigo
         );
         $stm->execute();
@@ -98,15 +106,17 @@ class Pessoa {
     }
 
     function create($data) {
-        $sql = "INSERT INTO pessoa (nome, documento, data_nascimento) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO pessoa ( nome, sobrenome, data_de_nascimento, cpf, telefone, ) VALUES (?, ?, ?, ?, ?)";
 
         $stm = $this->conn->prepare($sql);
 
         $stm->bind_param(
-            'sss', 
+            'sssss', 
             $data['nome'], 
-            $data['documento'], 
-            $data['nascimento']
+            $data['sobrenome'], 
+            $data['data_de_nascimento'],
+            $data['cpf '], 
+            $data['telefone'], 
         );
         $stm->execute();
 
