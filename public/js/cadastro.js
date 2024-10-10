@@ -31,9 +31,9 @@ form.addEventListener('submit', e => {
     fetch(`../../../src/pessoa.php${id ? '?id=' + id : ''}`, {
         method: id ? 'PUT' : 'POST',
         body: JSON.stringify({
-            nome: document.getElementById("name").value,
-            documento: document.getElementById("documento").value,
-            nascimento: document.getElementById("nascimento").value
+            email: document.getElementById("email").value,
+            senha: document.getElementById("senha").value,
+           
         }),
         headers: {
             'Content-Type': 'application/json'
