@@ -1,15 +1,9 @@
 
-let cancelar = document.getElementById('cancelar')
-
-cancelar.addEventListener('click', () => {
-    window.location = 'index.shtml'
-})
-
 let params = new URLSearchParams(window.location.search);
 let id = params.get('id');
 
 if (id) {
-    fetch('../../../src/pessoa.php?id='+id).then(function(resposta) {
+    fetch('../../../src/login.php?id='+id).then(function(resposta) {
         return resposta.json()
     }).then(function(data) {
         console.log(data)
@@ -18,8 +12,11 @@ if (id) {
 }
 
 function populate(data) {
-    document.getElementById("email").value = data[0].email
-    document.getElementById("senha").value = data[0].senha
+    document.getElementById("logradouro").value = data[0].logradouro
+    document.getElementById("numero").value = data[0].numero
+    document.getElementById("bairro").value = data[0].bairro
+    document.getElementById("cep").value = data[0].cep
+            
 }
 
 let form = document.getElementById('form')
@@ -27,12 +24,13 @@ let form = document.getElementById('form')
 form.addEventListener('submit', e => {
     e.preventDefault();
 
-    fetch(`../../../src/cadastro.php${id ? '?id=' + id : ''}`, {
+    fetch(`../../../src/pessoa.php${id ? '?id=' + id : ''}`, {
         method: id ? 'PUT' : 'POST',
         body: JSON.stringify({
-            email: document.getElementById("email").value,
-            senha: document.getElementById("senha").value,
-           
+            logradouro: document.getElementById("logradouro").value,
+            numero: document.getElementById("numero").value,
+            bairro: document.getElementById("bairro").value,
+            cep: document.getElementById("cep").value,
         }),
         headers: {
             'Content-Type': 'application/json'

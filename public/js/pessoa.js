@@ -1,10 +1,3 @@
-
-let cancelar = document.getElementById('cancelar')
-
-cancelar.addEventListener('click', () => {
-    window.location = 'index.shtml'
-})
-
 let params = new URLSearchParams(window.location.search);
 let id = params.get('id');
 
@@ -18,8 +11,11 @@ if (id) {
 }
 
 function populate(data) {
-    document.getElementById("email").value = data[0].email
-    document.getElementById("senha").value = data[0].senha
+    document.getElementById("codigo").value = data[0].codigo
+    document.getElementById("nome").value = data[0].nome
+    document.getElementById("documento").value = data[0].documento
+   
+            
 }
 
 let form = document.getElementById('form')
@@ -27,11 +23,12 @@ let form = document.getElementById('form')
 form.addEventListener('submit', e => {
     e.preventDefault();
 
-    fetch(`../../../src/cadastro.php${id ? '?id=' + id : ''}`, {
+    fetch(`../../../src/pessoa.php${id ? '?id=' + id : ''}`, {
         method: id ? 'PUT' : 'POST',
         body: JSON.stringify({
-            email: document.getElementById("email").value,
-            senha: document.getElementById("senha").value,
+            codigo: document.getElementById("codigo").value,
+            nome: document.getElementById("nome").value,
+            documento: document.getElementById("documento").value,
            
         }),
         headers: {

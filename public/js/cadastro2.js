@@ -1,10 +1,4 @@
 
-let cancelar = document.getElementById('cancelar')
-
-cancelar.addEventListener('click', () => {
-    window.location = 'index.shtml'
-})
-
 let params = new URLSearchParams(window.location.search);
 let id = params.get('id');
 
@@ -27,7 +21,7 @@ let form = document.getElementById('form')
 form.addEventListener('submit', e => {
     e.preventDefault();
 
-    fetch(`../../../src/cadastro.php${id ? '?id=' + id : ''}`, {
+    fetch(`../../../src/cadastro2.php${id ? '?id=' + id : ''}`, {
         method: id ? 'PUT' : 'POST',
         body: JSON.stringify({
             email: document.getElementById("email").value,
